@@ -1,0 +1,2 @@
+# Optional CPU sentence embeddings. Install the base requirements first.
+sentence-transformers>=5,<7

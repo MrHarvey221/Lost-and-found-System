@@ -1,134 +1,59 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#f6f7fb" />
-  <title>Findly — Lost & Found</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#6255d9">
+  <title>Findly · Your campus, reunited</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
 </head>
 <body>
-  <div class="auth-shell" id="authShell">
-    <section class="auth-stage" aria-label="Welcome to Findly">
-      <div class="auth-visual">
-        <div class="auth-brand">
-          <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
-          <span class="brand-name">findly<span>.</span><small>LOST & FOUND</small></span>
-        </div>
-        <h1>Lost something?<br><em>Let's bring it back.</em></h1>
-        <p>Sign in to report items, review smart matches, and help reunite belongings with their owners.</p>
-      </div>
-      <div class="auth-panel">
-        <div class="auth-tabs" role="tablist" aria-label="Account access">
-          <button type="button" class="auth-tab active" role="tab" aria-selected="true" data-auth-tab="login" id="tabLogin">Log in</button>
-          <button type="button" class="auth-tab" role="tab" aria-selected="false" data-auth-tab="signup" id="tabSignup">Sign up</button>
-        </div>
-
-        <div class="auth-pane active" id="loginPane" role="tabpanel" aria-labelledby="tabLogin">
-          <p class="eyebrow">WELCOME BACK</p>
-          <h2>Log in to Findly</h2>
-          <p class="auth-lead">Use your campus account to continue where you left off.</p>
-          <form id="loginForm" novalidate>
-            <div class="field">
-              <label for="loginEmail">Email address</label>
-              <input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-            </div>
-            <div class="field">
-              <label for="loginPassword">Password</label>
-              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required minlength="6">
-            </div>
-            <p class="auth-error" id="loginError" hidden></p>
-            <button class="btn btn-primary auth-submit" type="submit">Log in <span>↗</span></button>
-          </form>
-          <p class="auth-switch">New here? <button type="button" class="text-link" data-auth-tab="signup">Create an account</button></p>
-          <div class="form-note auth-demo-note"><strong>Demo login:</strong> pako@example.com · findly123</div>
-        </div>
-
-        <div class="auth-pane" id="signupPane" role="tabpanel" aria-labelledby="tabSignup" hidden>
-          <p class="eyebrow">JOIN THE CAMPUS</p>
-          <h2>Create your account</h2>
-          <p class="auth-lead">A few details so the community can help you recover what matters.</p>
-          <form id="signupForm" novalidate>
-            <div class="field">
-              <label for="signupName">Full name</label>
-              <input id="signupName" name="name" autocomplete="name" placeholder="e.g. Pako Daniel" required maxlength="90">
-            </div>
-            <div class="field">
-              <label for="signupEmail">Email address</label>
-              <input id="signupEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-            </div>
-            <div class="field">
-              <label for="signupCampus">Campus / organisation</label>
-              <input id="signupCampus" name="campus" autocomplete="organization" placeholder="Main Campus" maxlength="80">
-            </div>
-            <div class="field">
-              <label for="signupPassword">Password</label>
-              <input id="signupPassword" name="password" type="password" autocomplete="new-password" placeholder="At least 6 characters" required minlength="6">
-            </div>
-            <div class="field">
-              <label for="signupConfirm">Confirm password</label>
-              <input id="signupConfirm" name="confirm" type="password" autocomplete="new-password" placeholder="Repeat your password" required minlength="6">
-            </div>
-            <p class="auth-error" id="signupError" hidden></p>
-            <button class="btn btn-primary auth-submit" type="submit">Sign up <span>↗</span></button>
-          </form>
-          <p class="auth-switch">Already have an account? <button type="button" class="text-link" data-auth-tab="login">Log in</button></p>
-        </div>
+  <div id="boot" class="boot" role="status"><span class="spinner"></span>Getting Findly ready…</div>
+  <main id="authShell" class="auth-layout" hidden>
+    <section class="auth-story">
+      <a class="brand" href="#" aria-label="Findly home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>findly<span class="brand-dot">.</span></span></a>
+      <div class="story-copy"><span class="eyebrow">YOUR CAMPUS, REUNITED</span><h1>Good things<br>find their<br><em>way back.</em></h1><p>A lost bottle. A found backpack.<br>A little help from your campus.</p>
+      <div class="story-steps"><span>Report</span><b>→</b><span>Match</span><b>→</b><span>Recover</span></div></div>
+      <div class="story-foot"><span class="tiny-dot"></span> Made for the people on your campus.</div>
+    </section>
+    <section class="auth-main">
+      <div class="auth-card"><span class="mobile-brand">findly<span>.</span></span>
+        <div class="auth-tabs" role="tablist" aria-label="Account access"><button id="tabLogin" role="tab" aria-selected="true" data-auth="login" class="active">Log in</button><button id="tabSignup" role="tab" aria-selected="false" data-auth="signup">Sign up</button></div>
+        <section id="loginPane" role="tabpanel" aria-labelledby="tabLogin"><h2>Welcome back.</h2><p class="muted">Let’s pick up where you left off.</p>
+          <form id="loginForm"><label for="loginEmail">Campus email</label><input id="loginEmail" name="email" type="email" autocomplete="email" placeholder="you@university.ac.bw" required>
+          <label for="loginPassword">Password</label><input id="loginPassword" name="password" type="password" autocomplete="current-password" required maxlength="128" placeholder="Your password">
+          <p id="loginError" class="form-error" role="alert" hidden></p><button type="submit" class="button primary wide">Log in <span aria-hidden="true">→</span></button></form>
+          <p class="auth-switch">New to Findly? <button class="text-button" data-auth="signup">Create an account</button></p>
+        </section>
+        <section id="signupPane" role="tabpanel" aria-labelledby="tabSignup" hidden><h2>You’re in good company.</h2><p class="muted">Join your campus lost-and-found community.</p>
+          <form id="signupForm"><label for="signupName">Full name</label><input id="signupName" name="name" autocomplete="name" placeholder="Your name" maxlength="90" required>
+          <label for="signupEmail">Email address</label><input id="signupEmail" name="email" type="email" autocomplete="email" placeholder="you@university.ac.bw" required>
+          <div class="form-grid"><div><label for="signupRole">I’m a</label><select id="signupRole" name="role"><option value="student">Student</option><option value="staff">University staff member</option></select></div><div><label for="signupCampus">Campus</label><input id="signupCampus" name="campus" value="Main Campus" maxlength="80" required></div></div>
+          <label for="signupPassword">Password</label><input id="signupPassword" name="password" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="At least 10 characters" required>
+          <label for="signupConfirm">Confirm password</label><input id="signupConfirm" name="confirm" type="password" autocomplete="new-password" minlength="10" maxlength="128" placeholder="Enter it once more" required>
+          <p id="signupError" class="form-error" role="alert" hidden></p><button class="button primary wide" type="submit">Create my account <span aria-hidden="true">→</span></button></form>
+        </section>
+        <p class="auth-foot">Your private ownership details stay between you and authorized campus officers.</p>
       </div>
     </section>
-  </div>
+  </main>
 
-  <div class="app-shell" id="appShell" hidden>
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="#explore" aria-label="Findly home">
-        <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
-        <span class="brand-name">findly<span>.</span><small>LOST & FOUND</small></span>
-      </a>
-      <div class="workspace-label">WORKSPACE</div>
-      <nav class="nav-group" aria-label="Main navigation">
-        <button class="nav-link active" data-view="explore"><span class="nav-icon">⌕</span><span>Explore items</span><span class="nav-badge" id="itemsNavCount">12</span></button>
-        <button class="nav-link" data-view="my-reports"><span class="nav-icon">▤</span><span>My reports</span></button>
-        <button class="nav-link" data-view="matches"><span class="nav-icon">✳</span><span>Smart matches</span><span class="nav-dot"></span></button>
-        <button class="nav-link" data-view="notifications"><span class="nav-icon">♧</span><span>Notifications</span><span class="nav-count" id="notificationNavCount">3</span></button>
-        <button class="nav-link" data-view="claims"><span class="nav-icon">✓</span><span>Claim requests</span></button>
-      </nav>
-      <div class="sidebar-spacer"></div>
-      <div class="sidebar-help">
-        <div class="help-orbit"><span>✦</span></div>
-        <strong>Good things find their way.</strong>
-        <p>Help reunite an item with its owner. Every report makes a difference.</p>
-        <button class="help-link" data-view="explore">Explore community <span>↗</span></button>
-      </div>
-      <div class="sidebar-bottom">
-        <button class="nav-link" data-view="profile"><span class="nav-icon">⚙</span><span>Settings</span></button>
-        <div class="account-mini"><div class="avatar" id="sidebarAvatar">PD</div><div class="account-text"><strong id="sidebarName">Pako Daniel</strong><span id="sidebarRole">Campus member</span></div><button class="more-btn" title="Account menu" data-view="profile">···</button></div>
-      </div>
+  <div id="appShell" class="app-layout" hidden>
+    <button id="navShade" class="nav-shade" aria-label="Close navigation" hidden></button>
+    <aside id="sidebar" class="sidebar">
+      <a class="brand" href="#home" data-view="home" aria-label="Findly home"><span class="brand-mark"><i></i><i></i><i></i><i></i></span><span>findly<span class="brand-dot">.</span></span></a>
+      <span class="nav-caption">YOUR CAMPUS</span>
+      <nav id="mainNav" aria-label="Main navigation"></nav>
+      <div class="sidebar-bottom"><div class="campus-note"><span class="tiny-dot"></span><span id="campusLabel">Main Campus</span></div><button class="account-chip" data-view="profile"><span id="avatar" class="avatar"></span><span><strong id="accountName"></strong><small id="accountRole"></small></span><span aria-hidden="true">↗</span></button></div>
     </aside>
-
-    <main class="main-area">
-      <header class="topbar">
-        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
-        <div class="breadcrumbs"><span>Workspace</span><b>/</b><strong id="breadcrumbTitle">Explore items</strong></div>
-        <div class="top-actions">
-          <label class="global-search"><span>⌕</span><input id="globalSearch" placeholder="Search items, places..." autocomplete="off"><kbd>⌘ K</kbd></label>
-          <button class="icon-button notification-button" id="topNotifications" aria-label="Notifications"><span>♧</span><i></i></button>
-          <div class="top-avatar" id="topAvatar">PD</div>
-        </div>
-      </header>
-      <div class="page-content" id="pageContent" aria-live="polite"></div>
-      <footer class="app-footer"><span>findly<span class="brand-dot">.</span> <span>Making lost things found again.</span></span><span><i class="status-dot"></i> Prototype environment <b>•</b> v1.0</span></footer>
-    </main>
+    <div class="main-column"><header class="topbar"><div class="top-left"><button id="mobileMenu" class="icon-button mobile-menu" aria-label="Open navigation">☰</button><span id="pageLabel">Home</span></div><div class="top-right"><span id="demoLabel" class="demo-label" hidden>Demonstration data</span><button data-view="notifications" class="icon-button notification-button" aria-label="Notifications"><span id="bellIcon"></span><span id="notificationCount" class="count" hidden>0</span></button><button id="refreshButton" class="icon-button" aria-label="Refresh updates">↻</button></div></header>
+      <div id="connectionNotice" class="connection-notice" role="status" hidden></div>
+      <main id="pageContent" class="page-content"></main>
+      <footer class="app-footer"><span>Findly · A little help goes a long way.</span><span>Report. Match. Reunite.</span></footer>
+    </div>
   </div>
-  <div class="toast-stack" id="toastStack" aria-live="polite"></div>
-  <div class="modal-backdrop" id="modalBackdrop" hidden>
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">LET'S GET IT BACK</p><h2 id="modalTitle">Report an item</h2></div><button class="modal-close" id="closeModal" aria-label="Close dialog">×</button></div>
-      <div id="modalBody"></div>
-    </section>
-  </div>
-  <script src="app.js"></script>
+  <div id="modalBackdrop" class="modal-backdrop" hidden><section id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-heading"><h2 id="modalTitle"></h2><button id="closeModal" class="icon-button" aria-label="Close dialog">×</button></div><div id="modalBody"></div></section></div>
+  <div id="toastStack" class="toast-stack" aria-live="polite"></div>
 </body>
 </html>
